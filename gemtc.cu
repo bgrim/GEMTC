@@ -37,6 +37,7 @@ void *moveFromCuda(void *val, int size){
 /////////////////
 //API Functions//
 /////////////////
+extern "C"
 void setupGemtc(int QueueSize){
   pthread_mutex_init(&memcpyLock, NULL);
   pthread_mutex_init(&enqueueLock, NULL);
@@ -69,6 +70,7 @@ void setupGemtc(int QueueSize){
 
 
 int ID =0;
+extern "C"
 void *run(int Type, int Threads, void *host_params, int size_params){
   JobPointer h_JobDescription = (JobPointer) malloc(sizeof(JobDescription));
   h_JobDescription->JobType = Type;
@@ -97,6 +99,7 @@ void *run(int Type, int Threads, void *host_params, int size_params){
   return moveFromCuda(h_JobDescription->params, size_params); 
 }
 
+extern "C"
 void cleanupGemtc(){
   int temp=1;
   cudaSafeMemcpy(&temp, d_kill, sizeof(int), cudaMemcpyHostToDevice, 
