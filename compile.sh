@@ -1,1 +1,0 @@
-gcc -std=c99 -I/usr/local/cuda/include -o main -L. -ltest main.c
