@@ -1,4 +1,8 @@
-#include "gemtc.cu"
+extern void setupGemtc(int);
+extern void *run(int, int, void*, int);
+extern void cleanupGemtc(void);
+
+#include<stdio.h>
 
 int main(int argc, char **argv){
   setupGemtc(2560);
