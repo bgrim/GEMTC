@@ -3,6 +3,7 @@ extern void setupGemtc(int);
 #include<stdio.h>
 
 int main(){
+  setup();
   return 0;
 }
 
