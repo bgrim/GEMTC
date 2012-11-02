@@ -1,4 +1,0 @@
-
-This will demonstrate how to link a C function into a Swift
-script in Swift/T.
-
