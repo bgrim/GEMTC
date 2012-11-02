@@ -4,6 +4,7 @@ extern void setupGemtc(int);
 
 int main(){
   setup();
+  printf("setup complete.\n");
   return 0;
 }
 
