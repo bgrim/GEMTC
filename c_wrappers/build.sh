@@ -37,6 +37,10 @@ check "Could not read tclConfig.sh!"
 source ${TCL_CONFIG}
 check "tclConfig.sh failed!"
 
+# Compiling as per Justin's advice
+gcc -c gemtc_setup.c -o gemtc_setup.o
+gcc -shared -o gemtc.so gemtc_setup.o -L ... -l test RPATH # this shouldn't be here
+
 # Compile the Tcl extension
 gcc -fPIC ${TCL_INCLUDE_SPEC} -c ${LEAF_PKG}.c
 check
