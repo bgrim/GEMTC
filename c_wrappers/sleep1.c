@@ -1,9 +1,7 @@
-
 #include <assert.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
-
 #include <tcl.h>
 
 #include <stdio.h>
@@ -69,7 +67,14 @@ C_Sleep_Cmd(ClientData cdata, Tcl_Interp *interp,
   Tcl_SetObjResult(interp, result);
   return TCL_OK;
 }
-
+C_Sleep_Cmd_2(ClientData cdata, Tcl_Interp *interp,
+             int objc, Tcl_Obj *const objv[])
+{
+  // return some results
+  Tcl_Obj* result = Tcl_NewDoubleObj(0);
+  Tcl_SetObjResult(interp, result);
+  return TCL_OK;
+}
 int DLLEXPORT
 Tclsleep_Init(Tcl_Interp *interp)
 {
