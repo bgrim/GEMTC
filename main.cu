@@ -8,7 +8,7 @@ int main(int argc, char **argv){
 
   // doing work on gpu
   int i;
-  for(i=0; i<2; i++){
+  for(i=0; i<50; i++){
     int sleepTime = 1000;
     // runs a task on the gpu
     void *ret = run(0, 32, &sleepTime, sizeof(int));
