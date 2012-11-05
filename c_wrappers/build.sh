@@ -46,7 +46,7 @@ gcc -fPIC ${TCL_INCLUDE_SPEC} -c ${LEAF_PKG}.c
 check
 
 # Build the Tcl extension as a shared library
-gcc -shared -o ${LEAF_SO} ${LEAF_PKG}.o 
+gcc -shared -o ${LEAF_SO} ${LEAF_PKG}.o -L. -ltest -lgemtc
 check
 echo "created library: ${LEAF_SO}"
 

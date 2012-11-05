@@ -10,6 +10,9 @@
 
 // header file include
 extern void setupGemtc(int);
+extern void cleanupGemtc(void);
+extern void *run(int, int, void*, int);
+
 
 /**
    Set leaf package name here:
@@ -36,17 +39,33 @@ C_Sleep_Cmd(ClientData cdata, Tcl_Interp *interp,
   int error = Tcl_GetDoubleFromObj(interp, objv[1], &x);
 
   // call the gemtc setup
-  /*printf("Calling gpu setup now...\n");
-  setup();
-  printf("Out of GPU setup\n");
-*/
-  
+
+    printf("Calling gpu setup now...\n");
+    setupGemtc(2560);
+    printf("Calling gemtc run\n");
+
+      int i;
+      for(i=0; i<2; i++){
+	int sleepTime = 1000;
+	void *ret = run(0, 32, &sleepTime, sizeof(int));
+	printf("Finished job with parameter: %d\n", *(int *)ret);
+      }
+
+
+    printf("Out of gemtc run\n");
+    printf("Starting GeMTC Cleanup\n");
+    cleanupGemtc();
+    printf("Out of GPU cleanup\n");
+
+      
   printf("Error message: %i\n", error);
     printf("Sleeptime is equal to: %lf\n", x);
    int xx = (int) x;
    sleep(xx);
     printf("Sleep has completed.");
-  Tcl_Obj* result = Tcl_NewDoubleObj(0);
+  
+    // return some results
+    Tcl_Obj* result = Tcl_NewDoubleObj(0);
   Tcl_SetObjResult(interp, result);
   return TCL_OK;
 }
