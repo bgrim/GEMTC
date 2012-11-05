@@ -1,7 +1,7 @@
 #!/bin/bash
 
 setup=2
-workers=$1
+workers=1
 mpi=$(($workers + $setup))
 sleeptime=0
 bound=$2

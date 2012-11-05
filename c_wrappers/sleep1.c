@@ -36,15 +36,16 @@ C_Sleep_Cmd(ClientData cdata, Tcl_Interp *interp,
   int error = Tcl_GetDoubleFromObj(interp, objv[1], &x);
 
   // call the gemtc setup
-  printf("Calling gpu setup now...\n");
+  /*printf("Calling gpu setup now...\n");
   setup();
   printf("Out of GPU setup\n");
-
-  //  printf("Error message: %i\n", error);
-  //  printf("Sleeptime is equal to: %lf\n", x);
-  // int xx = (int) x;
-  // sleep(xx);
-  //  printf("Sleep has completed.");
+*/
+  
+  printf("Error message: %i\n", error);
+    printf("Sleeptime is equal to: %lf\n", x);
+   int xx = (int) x;
+   sleep(xx);
+    printf("Sleep has completed.");
   Tcl_Obj* result = Tcl_NewDoubleObj(0);
   Tcl_SetObjResult(interp, result);
   return TCL_OK;
