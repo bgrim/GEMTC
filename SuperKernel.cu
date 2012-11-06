@@ -1,6 +1,13 @@
 #include <stdio.h>
 
 #include "Kernels/AddSleep.cu"
+#include "Kernels/VecAdd.cu"
+#include "Kernels/VecDot.cu"
+#include "Kernels/MatrixSquare.cu"
+#include "Kernels/MatrixMultiply.cu"
+#include "Kernels/MatrixTranspose.cu"
+#include "Kernels/MatrixVector.cu"
+#include "Kernels/MatrixInverse.cu"
 
 
 __device__ JobPointer executeJob(volatile JobPointer currentJob);
@@ -44,10 +51,25 @@ __device__ JobPointer executeJob(JobPointer currentJob){
       addSleep(currentJob->params);
       break;
     case 1:
+      VecAdd(currentJob->params);
       break;
     case 2:
+      MatrixSquare(currentJob->params);
       break;
     case 3:
+      VecDot(currentJob->params);
+      break;
+    case 4:
+      MatrixMultiply(currentJob->params);
+      break;
+    case 5:
+      MatrixTranspose(currentJob->params);
+      break;
+    case 6:
+      MatrixVector(currentJob->params);
+      break;
+    case 7:
+      MatrixInverse(currentJob->params);
       break;
   }
   return currentJob;
