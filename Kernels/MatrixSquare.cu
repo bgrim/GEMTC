@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-__device__ void matrixSquare(void *input)
+__device__ void MatrixSquare(void *input)
 { 
     float *matrix = (float *) input;
     int warp_size=32;

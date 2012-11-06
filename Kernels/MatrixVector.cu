@@ -25,7 +25,7 @@ __device__ void MatrixVector(void* param)
               Pvalue += A[i*N+k] * B[k];
           }
           C[i] = Pvalue;
-          printf("%d=%d\n",i,Pvalue);
+          //printf("%d=%d\n",i,Pvalue);
        }
     }
 }
