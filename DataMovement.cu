@@ -4,9 +4,9 @@ int first = 1;
 void synchronizeAndPrint(cudaStream_t stream, char *s){
   cudaError_t e = cudaStreamSynchronize(stream);
   if(e!=cudaSuccess){
-    if(first){printf("CUDA Error:   %s   at %s\n", cudaGetErrorString( e ), s);first=0;}
+    //if(first){printf("CUDA Error:   %s   at %s\n", cudaGetErrorString( e ), s);first=0;}
     first=0;
-    //printf("CUDA Error:   %s   at %s\n", cudaGetErrorString( e ), s);
+    printf("CUDA Error:   %s   at %s\n", cudaGetErrorString( e ), s);
   }
 }
 
