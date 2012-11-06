@@ -22,10 +22,10 @@ __device__ void VecDot( void* param)
     // set the cache values
     c[cacheIndex] = temp;
     
+#if 0     
     // synchronize threads in this block
     __syncthreads();
 
-#if 0     
     // for reductions, threadsPerBlock must be a power of 2
     // because of the following code
     //int i = blockDim.x/2;
