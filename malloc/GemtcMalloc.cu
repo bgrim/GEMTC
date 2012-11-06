@@ -12,6 +12,7 @@ struct memoryPointer{
 static MemoryPointer base;
 static MemoryPointer *freep = NULL;
 
+int CHUNK_SIZE=128;
 int headerSize=16;
 int MIN_BULK_AMOUNT = 1000; //2^20 ~1million
 
@@ -77,7 +78,7 @@ void *gemtcMalloc(unsigned nbytes){
     base.size = 0;
   }
   nbytes+=headerSize;
-  if(nbytes%32!=0)nbytes+=(32-nbytes%32);
+  if(nbytes%CHUNK_SIZE!=0)nbytes+=(CHUNK_SIZE-nbytes%CHUNK_SIZE);
   char *loc;
   for(p = prevp->ptr; ;prevp = p, p = p->ptr){
     if(p->size >= nbytes){
