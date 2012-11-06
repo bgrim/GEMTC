@@ -1,6 +1,6 @@
 #include "gemtc.cu"
-#include "allocations.cu"
 #include <cuda_runtime.h>
+#include "tests.cu"
 #define TEST_SLEEP 0
 #define TEST_ADD   0
 #define TEST_PRODUCT 0
@@ -14,73 +14,17 @@ int main(int argc, char **argv){
 
   // doing work on gpu
   int i;
-<<<<<<< HEAD
   for(i=0; i<2; i++)
   {
-    void* ret = NULL;
-    void* param = NULL;
-#if TEST_SLEEP
-    int sleepTime = 5;
-    ret = run(0, 32, &sleepTime, sizeof(int));
-#endif
-
-#if TEST_ADD
-=======
-  for(i=0; i<2; i++){
-    int sleepTime = 1000;
->>>>>>> 900e13f67cbeb456920c107a204261a140a512e4
-    // runs a task on the gpu
-    int size = sizeof(float)*(32*3+1);
-    param = makeVectorAddArgs(64, size);
-    ret = run(1, 32, param, size);
-    free(ret);free(param);
-#endif 
-#if TEST_PRODUCT
-    int size = sizeof(float)*(32*3+1);
-    param = makeVectorAddArgsFloat(size);
-    ret = run(3, 32, param, size);
-    int* t1 = (int*)ret;
-    free(ret);free(param);
-#endif
-#if TEST_MATRIX_SQARE
-    int ROW = 32;
-    int size = 0;
-    param = makeMatrixTranspose(ROW, size);
-    //printf("val: %d\n",par[0]);
-    ret = run(2, 32, param,size);
-    free(ret);free(param);
-#endif
-#if TEST_MATRIX_MULTIPLY
-    int ROW = 32;
-    int size = 0;
-    param = makeMatrixMult(ROW, size);
-    //printf("val: %d\n",par[0]);
-    ret = run(4, 32, param,size);
-    free(ret);free(param);
-#endif
-#if TEST_MATRIX_TRANSPOSE
-    int ROW = 32; int COLUMN = 32; int number = 1;
-    int size = (number*ROW*COLUMN);
-    param = makeMatrixTranspose(ROW, size);
-    ret = run(5, 32, param,size);
-    float* retF = (float*)ret;
-    printf("Finished job with parameter: %.2f, size: %d\n", *retF,size);
-    free(ret);free(param);
-#endif
-#if TEST_MATRIX_VECTOR 
-    int ROW = 512; int size = 0;
-    param = makeMatrixVectorArgs(ROW, size);
-    ret = run(6, 32, param,size);
-    printf("Finished job with parameter: %d, size: %d\n", *retF,size);
-    free(ret);free(param);
-#endif
-#if TEST_MATRIX_INVERSE 
-    int ROW = 3; int size = 0;
-    param = makeMatrixInverse(ROW, size);
-    ret = run(7, 32, param,size);
-    printf("Finished job with parameter: %d, size: %d\n", *retF,size);
-    free(ret);free(param);
-#endif
+    printf("Iteration: %d\n", i);
+    testSleep();
+    testAdd();
+    testVectorProduct();
+    testMatrixSquare();
+    testMatrixMultiply();
+    testMatrixTranspose();
+    testMatrixVector();
+    testMatrixInverse();
   }
   printf("Before cleanupGemtc\n");
   // stops the superkernel and cleans up some memory
