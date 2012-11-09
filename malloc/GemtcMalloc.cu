@@ -12,7 +12,7 @@ struct memoryPointer{
 static MemoryPointer base;
 static MemoryPointer *freep = NULL;
 
-int CHUNK_SIZE=128;
+int CHUNK_SIZE=256;
 int headerSize=16;
 int MIN_BULK_AMOUNT = 1000; //2^20 ~1million
 

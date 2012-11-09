@@ -83,7 +83,7 @@ void *run(int Type, int Threads, void *host_params, int size_params){
 
   EnqueueJob(h_JobDescription, d_newJobs);
   pthread_mutex_unlock(&enqueueLock); //End Critical Section
-  printf("Finished enqueue #%d\n", MyID);
+  //printf("Finished enqueue #%d\n", MyID);
 
   int first = 1;
   while(h_JobDescription->JobID!=MyID || first){
@@ -94,7 +94,7 @@ void *run(int Type, int Threads, void *host_params, int size_params){
     pthread_mutex_unlock(&dequeueLock);
     first = 0;
   }
-  printf("Recieved result on Job #%d\n", MyID);
+  //printf("Recieved result on Job #%d\n", MyID);
   
   return moveFromCuda(h_JobDescription->params, size_params); 
 }

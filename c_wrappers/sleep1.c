@@ -43,10 +43,10 @@ C_Sleep_Cmd(ClientData cdata, Tcl_Interp *interp,
     printf("Calling gemtc run\n");
 
       int i;
-      for(i=0; i<2; i++){
+      for(i=0; i<10; i++){
 	int sleepTime = 1000;
 	void *ret = run(0, 32, &sleepTime, sizeof(int));
-	printf("Finished job with parameter: %d\n", *(int *)ret);
+	//	printf("Finished job with parameter: %d\n", *(int *)ret);
       }
 
 

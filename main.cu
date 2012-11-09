@@ -8,11 +8,11 @@ int main(int argc, char **argv){
 
   // doing work on gpu
   int i;
-  for(i=0; i<1000; i++){
-    int sleepTime = 1000;
+  for(i=0; i<10; i++){
+    int sleepTime = 1;
     // runs a task on the gpu
     void *ret = run(0, 32, &sleepTime, sizeof(int));
-    printf("Finished job with parameter: %d\n", *(int *)ret);
+    //printf("%d : Finished job with parameter: %d\n",i, *(int *)ret);
   }
 
   // stops the superkernel and cleans up some memory
