@@ -67,6 +67,7 @@ C_Sleep_Cmd(ClientData cdata, Tcl_Interp *interp,
   Tcl_SetObjResult(interp, result);
   return TCL_OK;
 }
+/*
 C_Sleep_Cmd_2(ClientData cdata, Tcl_Interp *interp,
              int objc, Tcl_Obj *const objv[])
 {
@@ -75,6 +76,7 @@ C_Sleep_Cmd_2(ClientData cdata, Tcl_Interp *interp,
   Tcl_SetObjResult(interp, result);
   return TCL_OK;
 }
+*/
 int DLLEXPORT
 Tclsleep_Init(Tcl_Interp *interp)
 {
