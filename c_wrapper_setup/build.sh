@@ -5,7 +5,7 @@
 # This could be a Makefile but I think it is better
 # to use bash as a reference example. -Justin
 
-LEAF_PKG=sleep1
+LEAF_PKG=setup
 LEAF_SO="libtcl${LEAF_PKG}.so"
 LEAF_TCL="${LEAF_PKG}.tcl"
 

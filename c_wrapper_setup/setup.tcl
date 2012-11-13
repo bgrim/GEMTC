@@ -7,7 +7,7 @@ namespace eval setup {
 
 #tickle, output log, list of variables that swift could wait on, tickle code to run
         turbine::rule "c_setup-$output" $inputs $turbine::WORK \
-            "setup::c_sleep_body $output $inputs"
+            "setup::c_setup_body $output $inputs"
      }
 
     proc c_setup_body {o x} {

@@ -1,6 +1,6 @@
 
 #include <builtins.swift>
-#include "sleep1.swift"
+#include "setup.swift"
 #include <io.swift>
 #include <sys.swift>
 
