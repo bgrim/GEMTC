@@ -28,8 +28,8 @@ TURBINE=$( which turbine )
 check
 #echo "using turbine: ${TURBINE}"
 
-STC_OUT=test-sleep1.tcl
-${STC} test-sleep1.swift ${STC_OUT}
+STC_OUT=test-run.tcl
+${STC} test-run.swift ${STC_OUT}
 check
 
 #echo "compiled to: ${STC_OUT}"
