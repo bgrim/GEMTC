@@ -42,8 +42,8 @@ C_Setup_Cmd(ClientData cdata, Tcl_Interp *interp,
     setupGemtc(2560);
     printf("Out of gpu setup.\n");
       
-  printf("Error message: %i\n", error);
-    // return some results
+     printf("Error message: %i\n", error);
+     // return some results
     Tcl_Obj* result = Tcl_NewDoubleObj(0);
   Tcl_SetObjResult(interp, result);
   return TCL_OK;
@@ -56,13 +56,23 @@ C_Run_Cmd(ClientData cdata, Tcl_Interp *interp,
   double x;
   int error = Tcl_GetDoubleFromObj(interp, objv[1], &x);
 
-  // call the gemtc setup
+  // calling gemtcrun
+    
+      printf("Calling gemtc run\n");
+      int i;
+      for(i=0; i<10; i++){
+	int sleepTime = 1000;
+	void *ret = run(0, 32, &sleepTime, sizeof(int));
+	//printf("Finished job with parameter: %d\n", *(int *)ret);
+      }
 
-    printf("Calling gpu setup now...\n");
-    setupGemtc(2560);
-    printf("Out of gpu setup.\n");
-      
-  printf("Error message: %i\n", error);
+
+    printf("Out of gemtc run\n");
+    printf("Starting GeMTC Cleanup\n");
+    cleanupGemtc();
+    printf("Out of GPU cleanup\n");
+    
+   printf("Error message: %i\n", error);
     // return some results
     Tcl_Obj* result = Tcl_NewDoubleObj(0);
   Tcl_SetObjResult(interp, result);
