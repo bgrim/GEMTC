@@ -75,6 +75,7 @@ void testStencil()
    int step = ceil(time/dt);
    int size = 0;
    void* param = allocateStencil( N,size);
+
    for (int t=0; t<steps; t++)
    {    
         void* ret = run(8, 32, param,size);
