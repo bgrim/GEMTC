@@ -75,13 +75,14 @@ void testStencil()
    int step = ceil(time/dt);
    int size = 0;
    void* param = allocateStencil( N,size);
-
-   for (int t=0; t<steps; t++)
+   step = 2;
+   for (int t=0; t<step; t++)
    {    
         void* ret = run(8, 32, param,size);
         free(ret);
-        void* ret = run(9, 32, param,size);
+        ret = run(9, 32, param,size);
         free(ret);
+        printf("Processing time step: %d\n", t);
    }
    free(param);
 }

@@ -1,4 +1,5 @@
 #include "gemtc.cu"
+#include "tests.cu"
 #include <cuda_runtime.h>
 
 int main(int argc, char **argv){
@@ -11,7 +12,8 @@ int main(int argc, char **argv){
   for(i=0; i<10; i++){
     int sleepTime = 1;
     // runs a task on the gpu
-    void *ret = run(0, 32, &sleepTime, sizeof(int));
+    //void *ret = run(0, 32, &sleepTime, sizeof(int));
+   testStencil();
     //printf("%d : Finished job with parameter: %d\n",i, *(int *)ret);
   }
 
