@@ -67,3 +67,20 @@ void testMatrixInverse()
     free(ret);free(param);
 }
 
+void testStencil()
+{
+   int N  =  128;
+   float dt = 0.00001f;
+   float time = 0.4f;
+   int step = ceil(time/dt);
+   int size = 0;
+   void* param = allocateStencil( N,size);
+   for (int t=0; t<steps; t++)
+   {    
+        void* ret = run(8, 32, param,size);
+        free(ret);
+        void* ret = run(9, 32, param,size);
+        free(ret);
+   }
+   free(param);
+}

@@ -143,3 +143,45 @@ void* makeMatrixVectorArgs(int ROWS, int& size)
     }
     return (void*)param;
 }
+
+void* allocateStencil(int N, int& size)
+{
+    float xmin     = 0.0f;
+    float xmax     = 3.5f;
+    float ymin     = 0.0f;
+    //float ymax     = 2.0f;
+    float h       = (xmax-xmin)/(N-1);
+    float dt    = 0.00001f;    
+    float alpha    = 0.645f;
+    float time     = 0.4f;
+
+    int steps = ceil(time/dt);
+    int I;
+
+    //float *u      = new float[N*N];
+    //float *u_host = new float[N*N];
+
+    size = sizeof(float)*(5+2*N*N);
+    float* param = (float*)malloc(sizeof(float)*size);
+     
+    param[0] = N;
+    param[1] = h;
+    param[2] = dt;
+    param[3] = alpha;
+    param[4] = N;
+    float* u = param+5;
+    float* u_host = u + N*N;
+    // Generate mesh and intial condition
+    for (int j=0; j<N; j++)
+    {    for (int i=0; i<N; i++)
+        {    I = N*j + i;
+            u[I] = 0.0f;
+            u_host[I] = 0.0f;
+            if ( (i==0) || (j==0)) 
+                {u[I] = 200.0f;}
+        }
+    }
+
+    return (void*)param;
+}
+

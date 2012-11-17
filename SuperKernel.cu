@@ -8,6 +8,8 @@
 #include "Kernels/MatrixTranspose.cu"
 #include "Kernels/MatrixVector.cu"
 #include "Kernels/MatrixInverse.cu"
+#include "Kernels/StencilCopy.cu"
+#include "Kernels/StencilUpdate.cu"
 
 
 __device__ JobPointer executeJob(volatile JobPointer currentJob);
@@ -70,6 +72,11 @@ __device__ JobPointer executeJob(JobPointer currentJob){
       break;
     case 7:
       MatrixInverse(currentJob->params);
+      break;
+    case 8:
+      StencilCopy(currentJob->params);
+    case 9:
+      StencilUpdate(currentJob->params);
       break;
   }
   return currentJob;
