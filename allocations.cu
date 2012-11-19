@@ -184,4 +184,41 @@ void* allocateStencil(int N, int& size)
 
     return (void*)param;
 }
+float RandFloat(float low, float high)
+{
+    float t = (float)rand() / (float)RAND_MAX;
+    return (1.0f - t) * low + t * high;
+}
+void* allocateBlackScholes(int N, int& size)
+{
+    const int   OPT_N = N;//4000000;
+    const int   OPT_SZ = OPT_N * sizeof(float);
+    const float RISKFREE = 0.02f;
+    const float VOLATILITY = 0.30f;
+    float *h_CallResultCPU, *h_PutResultCPU;
+    float *h_StockPrice, *h_OptionStrike, *h_OptionYears;
 
+
+    size = OPT_SZ*5+3*sizeof(float);
+    
+    float* param = (float*)malloc(size);
+    param[0] = RISKFREE;
+    param[1] = VOLATILITY;
+    param[2] = OPT_N;
+    h_CallResultCPU = param+3;
+    h_PutResultCPU = h_CallResultCPU + OPT_N;
+    h_StockPrice = h_PutResultCPU + OPT_N;
+    h_OptionStrike = h_StockPrice + OPT_N;
+    h_OptionYears = h_OptionStrike + OPT_N;
+    srand(5347);
+    //Generate options set
+    for(int i = 0; i < OPT_N; i++)
+    {
+        h_CallResultCPU[i] = 0.0f;
+        h_PutResultCPU[i]  = -1.0f;
+        h_StockPrice[i]    = RandFloat(5.0f, 30.0f);
+        h_OptionStrike[i]  = RandFloat(1.0f, 100.0f);
+        h_OptionYears[i]   = RandFloat(0.25f, 10.0f);
+   }
+   return (void*)param;  
+}

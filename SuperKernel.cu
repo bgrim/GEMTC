@@ -10,6 +10,7 @@
 #include "Kernels/MatrixInverse.cu"
 #include "Kernels/StencilCopy.cu"
 #include "Kernels/StencilUpdate.cu"
+#include "Kernels/BlackScholes.cu"
 
 
 __device__ JobPointer executeJob(volatile JobPointer currentJob);
@@ -77,6 +78,9 @@ __device__ JobPointer executeJob(JobPointer currentJob){
       StencilCopy(currentJob->params);
     case 9:
       StencilUpdate(currentJob->params);
+      break;
+    case 10:
+      BlackScholes(currentJob->params);
       break;
   }
   return currentJob;

@@ -86,3 +86,12 @@ void testStencil()
    }
    free(param);
 }
+
+void testBlackScholes()
+{
+   int N = 100;
+   int size = 0;
+   void *param = allocateBlackScholes(N, size);
+   void* ret = run(10,32,param,size);
+   free(ret);
+}
